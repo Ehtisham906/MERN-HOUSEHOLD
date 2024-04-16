@@ -23,7 +23,7 @@ export const updateUser = async (req, res, next) => {
                 password: req.body.password,
                 avatar: req.body.avatar,
             },
-        },{ new: true }
+        }, { new: true }
         );
 
         const { password, ...rest } = updatedUser._doc;
@@ -33,3 +33,17 @@ export const updateUser = async (req, res, next) => {
         next(error)
     }
 };
+
+
+export const deleteUser = async (req, res, next) => {
+    if (req.user.id !== req.params.id) return next(errorHandler(401, "You can delete only your account!"))
+
+    try {
+        await User.findByIdAndDelete(req.params._id);
+        res.clearCookie('access_token');
+        res.status(200).json( 'User deleted successfully');
+    } catch (error) {
+        next(error);
+    }
+};
+
