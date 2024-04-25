@@ -146,15 +146,13 @@ export default function CreateListing() {
     const handelSubmit = async (e) => {
         e.preventDefault();
         try {
-            if (formData.imageUrls.length < 1) return setError('Please upload at least one image');
-            if (+formData.regularPrice < +formData.discountPrice) return setError('Discount Price must be lower');
-
-
-
-
+            if (formData.imageUrls.length < 1) 
+            return setError('Please upload at least one image');
+            if (+formData.regularPrice < +formData.discountPrice) 
+            return setError('Discount Price must be lower');
             setLoading(true);
             setError(false);
-            const res = await fetch('/api/listing/create', {
+            const res = await fetch(`/api/listing/update/${params.listingId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
