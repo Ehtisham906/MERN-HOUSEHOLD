@@ -14,8 +14,7 @@ import {
   deleteUserFailure,
   deleteUserStart,
   deleteUserSuccess,
-  signOutUserStart,
-  signOutUserFaliure
+  signOutUserStart
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -125,13 +124,13 @@ export default function Profile() {
       const res = await fetch('/api/auth/signout');
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signOutUserFaliure(data.message))
+        dispatch(deleteUserFailure(data.message))
         return;
       }
-      dispatch(signOutUserSuccess(data));
+      dispatch(deleteUserSuccess(data));
 
     } catch (error) {
-      dispatch(signOutUserFaliure());
+      dispatch(deleteUserFailure());
     }
   }
   const handelShowListings = async () => {
