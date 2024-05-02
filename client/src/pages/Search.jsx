@@ -13,6 +13,10 @@ export default function Search() {
         order: 'desc',
     });
 
+    const [loading, setLoading] = useState(false);
+    const [listings, setListings] = useState([]);
+    console.log(listings)
+
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
@@ -43,7 +47,18 @@ export default function Search() {
             });
         }
 
+        const fetchListings = async () => {
+            setLoading(true);
+            const searchQuery = urlParams.toString();
+            const res = await fetch(`/api/listing/get?${searchQuery}`)
+            const data = await res.json();
+            setListings(data);
+            setLoading(false);
+        };
+
+        fetchListings();
     }, [location.search]);
+
 
 
     const handelChange = (e) => {
@@ -73,7 +88,8 @@ export default function Search() {
         urlParams.set('type', sidebardata.type);
         urlParams.set('parking', sidebardata.parking);
         urlParams.set('furnished', sidebardata.furnished);
-        urlParams.set('offer', sidebardata.sort);
+        urlParams.set('offer', sidebardata.offer);
+        urlParams.set('sort', sidebardata.sort);
         urlParams.set('order', sidebardata.order);
         const searchQuery = urlParams.toString();
         navigate(`/search?${searchQuery}`);
