@@ -218,7 +218,7 @@ export default function CreateListing() {
                             <p>Baths</p>
                         </div>
                         <div className="flex items-center gap-2">
-                            <input type="number" id="regularPrice" min='50' max='100000' required className="p-3 border border-gray-300 rounded-lg" onChange={handelChange} value={formData.regularPrice} />
+                            <input type="number" id="regularPrice"  required className="p-3 border border-gray-300 rounded-lg" onChange={handelChange} value={formData.regularPrice} />
                             <div className="flex flex-col items-center">
                                 <p>Regular Price</p>
                                 <span className="text-xs">($ / Month)</span>
@@ -227,7 +227,7 @@ export default function CreateListing() {
                         {formData.offer && (
 
                             <div className="flex items-center gap-2">
-                                <input type="number" id="discountPrice" min='0' max='1000000' required className="p-3 border border-gray-300 rounded-lg" onChange={handelChange} value={formData.discountPrice} />
+                                <input type="number" id="discountPrice"   required className="p-3 border border-gray-300 rounded-lg" onChange={handelChange} value={formData.discountPrice} />
                                 <div className="flex flex-col items-center">
                                     <p>Discounted Price</p>
                                     <span className="text-xs">($ / Month)</span>
@@ -256,7 +256,7 @@ export default function CreateListing() {
                         ))
                     }
                     <button disabled={loading || uploading} className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80" >
-                        {loading ? "Creating..." : "Update Listing"}
+                        {loading ? "Updating..." : "Update Listing"}
                     </button>
                     {error && <p className="text-red-700 text-sm">{error}</p>}
                 </div>
