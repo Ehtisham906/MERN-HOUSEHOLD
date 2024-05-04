@@ -188,7 +188,7 @@ export default function Search() {
                         <p className="text-xl text-slate-700 text-center w-full">Loading...</p>
                     )}
 
-                    {!loading && listings && listings.map((listing) =>(<ListingItem key={listing._id} listing={listing} />))}
+                    {!loading && listings && listings.map((listing) => (<ListingItem key={listing._id} listing={listing} />))}
                 </div>
             </div>
         </div>
