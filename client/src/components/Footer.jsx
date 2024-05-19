@@ -2,7 +2,7 @@ import "./Footer.css";
 
 export default function Footer() {
     return (
-        <footer className="bg-[#B6C9C9] mt-[60px]">
+        <footer className="bg-red-200 mt-[60px]">
             <div className="flex justify-between footerSection" >
                 
 
